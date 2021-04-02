@@ -1,0 +1,7 @@
+print('='*36)
+preco = ('Arroz',3.35,'Coca',5.0,'Celular',450)
+print('==========Lista de Preços=========')
+print('='*36)
+print(preco[0],'.......... R$',preco[1])
+print(preco[2],'.......... R$',preco[3])
+print(preco[4],'.......... R$',preco[5])
