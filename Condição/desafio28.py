@@ -11,7 +11,7 @@ if num == numero:
     input()
 
 else:
-    print('Você errou, tente de novo !')
+    print(f'Você errou o número que pensei foi o {numero}, tente de novo !')
     pygame.mixer.init()
     pygame.mixer.music.load('faustao.mp3')
     pygame.mixer.music.play()
