@@ -18,3 +18,10 @@ pessoa1.nome = "Paulo Victor"
 pessoa1.idade = 28
 pessoa1.aniversario()
 print(pessoa1.mensagem())
+
+print("-----------------------------")
+
+pessoa2 = Pessoa()
+pessoa2.nome = "Aleatório"
+pessoa2.idade = 20
+print(pessoa2.mensagem())
