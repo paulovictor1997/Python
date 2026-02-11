@@ -5,9 +5,12 @@ quanto de carne deve ser comprado, o custo total do churrasco e no final o preç
 """
 # Criando valores fixos para facilitar o exercicio
 # 400g de carne por pessoa (0,4 kg) / Preço do kg da carne: R$ 50,00
+from rich import print
 
 class Churrasco : 
     def __init__(self, qtd_pessoas):
+        if qtd_pessoas <=0: 
+            raise ValueError ("Adicione ao menos uma pessoa") #Caso passe o número zerado de pessoas, o código irá mostrar esse erro
         self.qtd_pessoas = qtd_pessoas
         self.consumo_por_pessoa = 0.4 
         self.preco_kg = 50.0
@@ -23,11 +26,18 @@ class Churrasco :
     
     def resumo(self):
         print("=== Churrasco ===")
-        print(f"Quantidade de pessoas : {self.qtd_pessoas}")
-        print(f"Carne necessária : {self.calcular_carne():.2f} KG")
-        print(f"Custo total : R$ {self.custo_total():.2f}")
-        print(f"Valor por pessoa : R$ {self.calculo_por_pessoa():.2f}")
+        print(f"Quantidade de pessoas :[blue]{self.qtd_pessoas}[/blue]")
+        print(f"Carne necessária : [blue] {self.calcular_carne():.2f} KG[/blue]")
+        print(f"Custo total : [blue] R$ {self.custo_total():.2f}[/blue]")
+        print(f"Valor por pessoa : [blue] R$ {self.calculo_por_pessoa():.2f}[/blue]")
+try:
+    churrasco = Churrasco(10)  
+    churrasco.resumo()
+except ValueError as erro:
+    print("=" * 40)
+    print("[bold red]ERRO NO CHURRASCO[/bold red]")
+    print(f"Motivo: {erro}")
+    print("=" * 40)
 
-
-churrasco = Churrasco(10)
-churrasco.resumo()
+#churrasco = Churrasco(10) 
+#churrasco.resumo()
