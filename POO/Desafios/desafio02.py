@@ -30,13 +30,24 @@ class Produto:
 
         console.print(painel)
 
-#Conteúdo principal
-try:
-    #Métodos
-    produto = Produto("Notebook Gamer",4500)
+#Conteúdo principal - Atualizado
+#Métodos
+produtos = [
+    Produto("Notebook Gamer",4500),
+    Produto("Computador", 5000),
+    Produto("Teclado", 1100)
+]
+
+for produto in produtos:
     produto.etiqueta()
-    print("="*40)
-    produto2 = Produto("Computador", 5000)
-    produto2.etiqueta()
-except ValueError as erro:
-    console.print(f"[bold red]Erro:[/bold red] {erro}")
+
+#Conteúdo principal
+#try:
+    #Métodos
+#    produto = Produto("Notebook Gamer",4500)
+#    produto.etiqueta()
+#    print("="*40)
+#    produto2 = Produto("Computador", 5000)
+#    produto2.etiqueta()
+#except ValueError as erro:
+#    console.print(f"[bold red]Erro:[/bold red] {erro}")
