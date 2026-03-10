@@ -1,52 +1,39 @@
 """
 Crie uma classe livro, que vai simular a passagem de páginas de um livro, considerando também,
-se o usuário chegou ao fim da leitura. (VERSÃO NÃO FINALIZADA)
+se o usuário chegou ao fim da leitura. (VERSÃO FINALIZADA)
 """
-from rich.console import Console
-from rich.panel import Panel
-
-console = Console()
+from rich import print
+import time
 
 class Livro : 
-    def __init__(self,total_paginas):
-        self.total_paginas = total_paginas
-        self.pagina_atual = 1
+    def __init__(self, titulo, paginas):
+        self.titulo = titulo
+        self.total_paginas = paginas
+        self.pagina_atual = 1 #Página atual sempre começará com 1
 
-    def mostrar_pagina(self):
-        console.print(
-            Panel.fit(
-                f"[bold cyan]Página {self.pagina_atual}[/bold cyan]",
-                title="Livro",
-                border_style="blue"
-            )
-        )
-    def proxima_pagina(self):
-        if self.pagina_atual < self.total_paginas:
-            self.pagina_atual += 1
-            self.mostrar_pagina()
+        print(f":open_book:[blue] Você acabou de abrir o livro [red]{self.titulo}[/] tem {self.total_paginas} páginas no total. Você agora está ná página {self.pagina_atual}[/]")
+
+    def avancar_paginas(self, qtd = 1):
+        cont = 0
+        for pg in range(0, qtd, 1):
+            if not self.fim_do_livro():
+                self.pagina_atual +=1
+                print(f"Pág {self.pagina_atual} :arrow_forward:", end="")
+                time.sleep(0.2)
+                cont+=1
+        print(f"[blue]Você avançou {cont} páginas e agora está na pagina {self.pagina_atual}[/blue]")
+        if self.fim_do_livro():
+            print(":closed_book: [red]Você chegou ao fim do livro[/red]")
+        
+    def fim_do_livro(self):
+        if self.pagina_atual == self.total_paginas:
+            return True
         else:
-            console.print("[bold red]Você chegou ao fim do livro![/bold red]")
-
-    def pagina_anterior(self):
-        if self.pagina_atual > 1:
-            self.pagina_atual -= 1
-            self.mostrar_pagina()
-        else:
-            console.print("[bold yellow]Você já está na primeira página![/bold yellow]")
-       
-    def ir_para_pagina(self,numero):
-        if 1 <= numero <= self.total_paginas:
-            self.pagina_atual = numero
-            self.mostrar_pagina()
-        else:
-          console.print(f"[bold red]Página {numero} não existe neste livro![/bold red]")
+            return False
+        
 
 
-livro = Livro(10)
-livro.mostrar_pagina()
-livro.proxima_pagina()
-livro.ir_para_pagina(10)
-livro.ir_para_pagina(11)
-livro.proxima_pagina()
-
-#CHECAR A CORREÇÃO COM O  GUANABARA
+l1 = Livro(titulo="Engenharia de Software",paginas=20)
+l1.avancar_paginas(5)
+l1.avancar_paginas(10)
+l1.avancar_paginas(50) #teste passando do limites de página.
