@@ -17,7 +17,7 @@ class Gamer:
 
         # transforma a lista de jogos em texto
         # fav_games receberá mais de um jogo, então é formatado como uma lista.
-        jogos_formatados = "\n".join(self.fav_games)
+        jogos_formatados = "\n".join(sorted(self.fav_games, key=str.lower))
 
         # adiciona UMA linha à tabela
         table.add_row(
