@@ -1,35 +1,49 @@
 """
 Crie uma classe caneta, que simule uma caneta colorida podendo escrever frases em cores relativas. 
-(CONFERIR COM A VERSÃO DO GUANABARA)
+(VERSÃO FINALIZADA)
 """
-from rich.console import Console
-from rich.panel import Panel
-from rich.align import Align
-
-console = Console()
+from rich import print
 
 class Caneta :
-    def __init__(self,cor): #atributo
-        if not cor:
-            raise ValueError("A caneta precisa ter uma cor.")
-        self.cor = cor.lower()
+    def __init__(self, cor = "azul"):
+        escolha = ""
+        match cor.lower().strip():
+            case "azul":
+                escolha = "[blue]"
+            case "vermelho" | "vermelha":
+                escolha = "[red]"
+            case "verde":
+                escolha = "[green]"
+            case _:  #Se ele colocar uma cor que não exista, ficará com o branco.
+                escolha = "[white]"
+        self.cor = escolha
+        self.tampada = True
 
-    def escrever(self,frase):
-        if not frase:
-            raise ValueError("A frase não pode estar vazia")
-        texto_colorido = f"[bold {self.cor}]{frase}[/bold {self.cor}]"
+    def escrever (self,msg):
+        if self.tampada :
+            print(f":prohibited: A {self.cor} caneta [/] está tampada!")
+        else:   
+            print(f"{self.cor}{msg}[/]", end="")
 
-        painel = Panel.fit(
-            Align.center(texto_colorido),
-            title=f"Caneta {self.cor.capitalize()}",
-            border_style=self.cor
-        )
+    def quebrar_linha(self,qtd = 1):
+        pass   
 
-        console.print(painel)
+    def tampar(self):
+        self.tampada = True
 
-#Métodos
-try:
-    cor_da_caneta = Caneta("red")
-    cor_da_caneta.escrever("A frase colorida fica assim")
-except ValueError as erro:
-    console.print(f"[bold red]Erro:[/bold red] {erro}")
+    def destampar(self):
+        self.tampada = False
+
+
+
+
+c1 = Caneta("azul")
+c2 = Caneta("vermelha")
+c3 = Caneta("verde")
+
+c1.destampar()
+c2.destampar()
+
+c1.escrever("Olá, mundo")
+c2.escrever("Está funcionando")
+c3.escrever("Está dando certo")
