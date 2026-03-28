@@ -26,7 +26,7 @@ class Caneta :
             print(f"{self.cor}{msg}[/]", end="")
 
     def quebrar_linha(self,qtd = 1):
-        pass   
+        print("\n" * qtd, end='')   
 
     def tampar(self):
         self.tampada = True
